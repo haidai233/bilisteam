@@ -30,11 +30,6 @@
 
 示例：`{uname} 正在玩 {game}` → "小明 正在玩 艾尔登法环"
 
-## 数据存储
-
-- 配置：`%APPDATA%/BiliSteamSign/config.json`
-- 凭证（加密）：`%LOCALAPPDATA%/BiliSteamSign/credentials.enc`
-- 日志：`%APPDATA%/BiliSteamSign/logs/`
 
 ## 许可证
 

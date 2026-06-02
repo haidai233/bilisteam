@@ -2,6 +2,8 @@
 
 自动将 Steam 游戏状态同步为 B站 个人签名。
 
+> 起因是看了 [BV1UtV564Eqi](https://www.bilibili.com/video/BV1UtV564Eqi) 这个视频，发现是付费功能，于是一清二白的火速搓了一个自用。
+
 ## 功能
 
 - 实时检测 Steam 正在运行的游戏（通过注册表轮询）
@@ -12,24 +14,9 @@
 - 自定义签名模板、排除游戏列表、签名长度限制
 - 开机自启（可选）
 
-## 环境要求
-
-- Windows 10/11
-- Python 3.10+
-
-## 安装
-
-```bash
-pip install -r requirements.txt
-```
-
 ## 使用
 
-双击 `start.bat` 或运行：
-
-```bash
-python main.py
-```
+下载 [最新 Release](../../releases) 的 `BiliSteamSign.zip`，解压后双击 `BiliSteamSign.exe` 即可运行。
 
 首次使用点击"扫码登录"，用B站APP扫码完成登录。
 

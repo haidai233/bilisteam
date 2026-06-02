@@ -2,7 +2,7 @@
 
 自动将 Steam 游戏状态同步为 B站 个人签名。
 
-> 起因是看了 [BV1UtV564Eqi](https://www.bilibili.com/video/BV1UtV564Eqi) 这个视频，发现是付费功能，于是一清二白的的我火速搓了一个自用之。
+> 起因是看了 [BV1UtV564Eqi](https://www.bilibili.com/video/BV1UtV564Eqi) 这个视频，发现是付费功能，于是一清二白的的我火速vibecoding搓了一个自用之。
 
 ## 功能
 

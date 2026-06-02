@@ -6,8 +6,6 @@ from tkinter import ttk, messagebox, simpledialog
 import logging
 import traceback
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
 from logger import setup_logger
 from config import ConfigManager
 from credential_store import CredentialStore
@@ -294,6 +292,8 @@ class _TextHandler(logging.Handler):
 
 
 def main():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
     if not _single_instance_guard():
         print(f"{APP_NAME} is already running.")
         sys.exit(0)
@@ -308,5 +308,6 @@ if __name__ == "__main__":
     except Exception:
         traceback.print_exc()
         setup_logger().exception("Unhandled application error")
-        input("程序发生错误，按 Enter 退出...")
+        import tkinter.messagebox as mb
+        mb.showerror("BiliSteamSign", "程序发生错误，请查看日志。")
         raise

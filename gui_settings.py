@@ -256,7 +256,7 @@ class SettingsWindow:
     def _apply_template_preset(self):
         menu = tk.Menu(self.window, tearoff=False)
         presets = [
-            "正在玩 {game}",
+            "{uname} 正在玩 {game}",
             "🎮 正在玩 {game}",
             "BiliSteamSign 正在玩 {game}",
             "Playing {game}",

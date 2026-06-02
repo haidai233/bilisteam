@@ -50,7 +50,7 @@ class App:
 
         self.root = tk.Tk()
         self.root.title(f"{APP_NAME} v{VERSION}")
-        self.root.geometry("820x340")
+        self.root.geometry("520x380")
         self.root.resizable(True, True)
 
         self._build_ui()
@@ -75,21 +75,27 @@ class App:
         ttk.Label(status_frame, textvariable=self._cookie_var).pack(anchor="w")
 
         # Controls
-        ctrl_frame = ttk.LabelFrame(self.root, text="控制", padding=10)
+        ctrl_frame = ttk.LabelFrame(self.root, text="控制", padding=5)
         ctrl_frame.pack(fill="x", padx=10, pady=5)
+        ctrl_frame.columnconfigure(list(range(6)), weight=1)
 
-        ttk.Button(ctrl_frame, text="扫码登录", command=self._on_qr_login).pack(side="left", padx=5)
-        self._start_btn = ttk.Button(ctrl_frame, text="启动同步", command=self._on_start)
-        self._start_btn.pack(side="left", padx=5)
-        self._stop_btn = ttk.Button(ctrl_frame, text="停止同步", command=self._on_stop, state="disabled")
-        self._stop_btn.pack(side="left", padx=5)
-        ttk.Button(ctrl_frame, text="手动检查", command=self._on_manual_check).pack(side="left", padx=5)
-        ttk.Button(ctrl_frame, text="修改签名", command=self._on_manual_sign).pack(side="left", padx=5)
-        self._pause_btn = ttk.Button(ctrl_frame, text="暂停", command=self._toggle_pause)
-        self._pause_btn.pack(side="left", padx=5)
-        ttk.Button(ctrl_frame, text="设置", command=self._open_settings).pack(side="left", padx=5)
-        ttk.Button(ctrl_frame, text="退出登录", command=self._on_logout).pack(side="right", padx=5)
-        ttk.Button(ctrl_frame, text="退出", command=self._on_quit).pack(side="right", padx=5)
+        bw = 10
+        r = 0
+        ttk.Button(ctrl_frame, text="扫码登录", width=bw, command=self._on_qr_login).grid(row=r, column=0, padx=3, pady=2)
+        self._start_btn = ttk.Button(ctrl_frame, text="启动同步", width=bw, command=self._on_start)
+        self._start_btn.grid(row=r, column=1, padx=3, pady=2)
+        self._stop_btn = ttk.Button(ctrl_frame, text="停止同步", width=bw, command=self._on_stop, state="disabled")
+        self._stop_btn.grid(row=r, column=2, padx=3, pady=2)
+        self._pause_btn = ttk.Button(ctrl_frame, text="暂停", width=bw, command=self._toggle_pause)
+        self._pause_btn.grid(row=r, column=3, padx=3, pady=2)
+        ttk.Button(ctrl_frame, text="手动检查", width=bw, command=self._on_manual_check).grid(row=r, column=4, padx=3, pady=2)
+        ttk.Button(ctrl_frame, text="退出", width=bw, command=self._on_quit).grid(row=r, column=5, padx=3, pady=2)
+
+        r = 1
+        ttk.Button(ctrl_frame, text="修改签名", width=bw, command=self._on_manual_sign).grid(row=r, column=0, padx=3, pady=2)
+        ttk.Button(ctrl_frame, text="恢复签名", width=bw, command=self._on_restore_sign).grid(row=r, column=1, padx=3, pady=2)
+        ttk.Button(ctrl_frame, text="设置", width=bw, command=self._open_settings).grid(row=r, column=2, padx=3, pady=2)
+        ttk.Button(ctrl_frame, text="退出登录", width=bw, command=self._on_logout).grid(row=r, column=5, padx=3, pady=2)
 
         # Log
         log_frame = ttk.LabelFrame(self.root, text="日志", padding=5)
@@ -201,6 +207,20 @@ class App:
         else:
             self._append_log(f"手动签名更新失败: {msg}")
             messagebox.showerror("更新失败", msg)
+
+    def _on_restore_sign(self):
+        original = self.sync.get_original_sign()
+        if not original:
+            messagebox.showinfo("提示", "没有保存的原始签名")
+            return
+        success, msg = self.bili.update_sign(original)
+        if success:
+            self.sync.mark_manual_sign(original)
+            self._sign_var.set(f"签名: {original[:40]}")
+            self._append_log(f"已恢复原始签名: {original}")
+        else:
+            self._append_log(f"恢复签名失败: {msg}")
+            messagebox.showerror("恢复失败", msg)
 
     def _open_settings(self):
         from gui_settings import SettingsWindow

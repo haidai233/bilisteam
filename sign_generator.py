@@ -6,11 +6,11 @@ BILI_SIGN_MAX_LEN = 60
 class SignGenerator:
     _TEMPLATES = {
         SignLanguage.CHINESE: {
-            "steam": "正在玩 {game}",
+            "steam": "{uname} 正在玩 {game}",
             "non_steam": "非Steam游戏中",
         },
         SignLanguage.CHINESE_STRICT: {
-            "steam": "正在玩 {game}",
+            "steam": "{uname} 正在玩 {game}",
             "non_steam": "非Steam游戏中",
         },
         SignLanguage.ENGLISH: {

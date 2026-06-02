@@ -35,14 +35,13 @@ class AppConfig:
     sign_sync_cooldown: int = 60
     stability_confirm_count: int = 2
     excluded_games: list = field(default_factory=lambda: [
-        "Wallpaper Engine", "OBS Studio", "VTube Studio",
-        "Blender", "Godot Engine"
+        "Wallpaper Engine", "OBS Studio"
     ])
     length_limit_mode: LengthLimitMode = LengthLimitMode.AUTO
     custom_length_limit: int = 32
     exclude_non_steam: bool = True
     auto_start: bool = False
     notify_enabled: bool = True
-    steam_sign_template: str = "正在玩 {game}"
+    steam_sign_template: str = "{uname} 正在玩 {game}"
     non_steam_sign_template: str = "非Steam游戏中"
     idle_sign: str = ""

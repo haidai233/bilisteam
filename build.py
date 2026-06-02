@@ -16,6 +16,8 @@ subprocess.check_call([
     "--onedir",
     "--windowed",
     "--name", "BiliSteamSign",
+    "--hidden-import", "qrcode",
+    "--collect-all", "qrcode",
     "--add-data", "start.bat;.",
     "main.py",
 ])
